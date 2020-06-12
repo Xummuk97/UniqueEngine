@@ -29,6 +29,10 @@ public:
 
     /**
      * @brief Загружает текстуру, используя файл ресурсов Qt
+     *
+     * @param path      Путь до файла ресурсов (писать без ":/")
+     *
+     * @return Текстура
     */
     static sf::Texture loadTextureFromQtRes(const QString& path);
 
