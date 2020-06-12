@@ -5,13 +5,13 @@
 
 #include "widgets/canvas.h"
 
-class MainWindow : public QFrame
+class Window : public QFrame
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Window(QWidget *parent = nullptr);
+    ~Window();
 
 private:
     MyCanvas* canvas;
