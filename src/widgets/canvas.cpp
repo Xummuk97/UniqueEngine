@@ -1,10 +1,11 @@
 #include "canvas.h"
 
 #include "macros.h"
+#include "globals.h"
 
-QSFMLCanvas::QSFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, unsigned int frameTime) :
-    QWidget       (parent),
-    isInitialized (false)
+QSFMLCanvas::QSFMLCanvas(QWidget* parent, const QPoint& position, const QSize& size, unsigned int frameTime)
+    : QWidget(parent),
+      isInitialized(false)
 {
     // Произведём настройку для непосредственной отрисовки изображения в виджет
     setAttribute(Qt::WA_PaintOnScreen);
@@ -100,6 +101,12 @@ void SFMLCanvas::onInit()
 
 void SFMLCanvas::onUpdate()
 {
+    // Обновляем содержимое уровня
+    Globals::level->update();
+
     // Очищаем экран с заданием цвета заднего фона
     clear(sf::Color(255, 255, 255));
+
+    // Рисуем содержимое уровня
+    Globals::level->draw();
 }

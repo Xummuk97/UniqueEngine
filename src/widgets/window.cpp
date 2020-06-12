@@ -26,6 +26,9 @@ Window::Window(QWidget *parent)
     // Внимание! Метод show надо вызывать у всех объектов, которые создаются с использованием родителя как экземпляра текущего класса!
     canvas = new SFMLCanvas(this, QPoint(0, 0), size());
     canvas->show();
+
+    // Инициализация карты
+    Globals::level = new Level();
 }
 
 Window::~Window()

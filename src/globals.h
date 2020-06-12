@@ -4,6 +4,7 @@
 #include <QtCore>
 
 #include "widgets/window.h"
+#include "level/level.h"
 
 /**
  * @brief Класс глобальных переменных с использованием паттерна Singleton
@@ -12,8 +13,7 @@ class Globals
 {
 public:
     static Window* window; /* Главное окно */
+    static Level*  level;  /* Уровень */
 };
-
-Window*             Globals::window;
 
 #endif // GLOBALS_H

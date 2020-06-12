@@ -69,8 +69,8 @@ private:
     */
     virtual void onTimeout();
 
-    QTimer timer; /* Таймер */
-    bool   isInitialized; /* Совершена ли инициализация */
+    QTimer timer;           /* Таймер */
+    bool   isInitialized;   /* Совершена ли инициализация */
 };
 
 /**
