@@ -3,21 +3,58 @@
 
 #include "level/chunk.h"
 
-class Layer;
+class ILayer;
 
-using LayerData = QList<Layer*>;
+using LayerData = QList<ILayer*>;
 
-class Layer
+
+
+class ILayer
 {
 public:
-    Layer();
-    ~Layer();
+    ILayer();
+    ~ILayer();
 
-    void update();
-    void draw();
+    virtual void update() = 0;
+    virtual void draw() = 0;
+
+    virtual QString getType() = 0;
+};
+
+
+
+using ChunkMap = QMap<QString, Chunk*>;
+
+class LayerNormal : public ILayer
+{
+public:
+    LayerNormal();
+    ~LayerNormal();
+
+    void update() override;
+    void draw() override;
+
+    QString getType() override;
 
 private:
-    ChunkData chunk_data;
+    ChunkMap chunk_data;
+};
+
+
+
+class LayerObjects : public ILayer
+{
+public:
+    LayerObjects();
+    ~LayerObjects();
+
+    void update() override;
+    void draw() override;
+
+    QString getType() override;
+
+private:
+
 };
 
 #endif // LAYER_H

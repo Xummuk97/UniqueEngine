@@ -1,23 +1,68 @@
 #include "entity.h"
 
+#include "macros.h"
 #include "globals.h"
 
-Entity::Entity()
+IEntity::IEntity()
 {
 
 }
 
-Entity::~Entity()
+IEntity::~IEntity()
 {
 
 }
 
-void Entity::draw()
+
+
+EntityNormal::EntityNormal()
 {
-    Globals::window->getCanvas()->draw(sprite);
+
 }
 
-void Entity::onUpdate()
+EntityNormal::~EntityNormal()
+{
+
+}
+
+void EntityNormal::draw()
+{
+
+}
+
+QString EntityNormal::getType()
+{
+    return OBJECT_NORMAL;
+}
+
+void EntityNormal::onUpdate()
+{
+
+}
+
+
+
+EntityElement::EntityElement()
+{
+
+}
+
+EntityElement::~EntityElement()
+{
+
+}
+
+void EntityElement::draw()
+{
+
+}
+
+QString EntityElement::getType()
+{
+    return OBJECT_ELEMENT;
+}
+
+void EntityElement::onUpdate()
 {
 
 }

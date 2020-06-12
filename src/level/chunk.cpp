@@ -3,7 +3,6 @@
 Chunk::Chunk(int size)
     : size(size)
 {
-    data.resize(size);
 }
 
 Chunk::~Chunk()

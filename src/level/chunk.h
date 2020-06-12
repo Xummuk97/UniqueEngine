@@ -5,9 +5,6 @@
 
 class Chunk;
 
-using ChunkMap = QMap<QString, Chunk*>;
-using ChunkData = QVector<Entity*>;
-
 class Chunk
 {
 public:
@@ -19,7 +16,6 @@ public:
 
 private:
     int size;
-    ChunkData data;
 };
 
 #endif // CHUNK_H
