@@ -21,6 +21,7 @@ SOURCES += \
     widgets/window.cpp
 
 HEADERS += \
+    globals.h \
     macros.h \
     widgets/canvas.h \
     widgets/window.h
