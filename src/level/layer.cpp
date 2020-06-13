@@ -51,6 +51,15 @@ QString LayerNormal::getType()
     return LAYER_NORMAL;
 }
 
+void LayerNormal::addChunk(Chunk *chunk)
+{
+    // Получаем идентификатор Чанка
+    sf::Vector2i id_pos = chunk->getIdPos();
+
+    // Добавляем Чанк в ассоциативый массив
+    chunk_data[QString("%1:%2").arg(id_pos.x).arg(id_pos.y)] = chunk;
+}
+
 
 
 LayerObjects::LayerObjects(const QString& name)

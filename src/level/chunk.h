@@ -30,18 +30,26 @@ using ChunkLines = QMap<QString, EntityElement*>;
 class Chunk
 {
 public:
-    Chunk(sf::Vector2f pos, sf::Vector2i size, sf::Vector2i tile_size);
+    Chunk(sf::Vector2i id_pos, sf::Vector2i size, sf::Vector2i tile_size);
     ~Chunk();
 
     void draw();
 
+    sf::Vector2i getIdPos() const;
+    sf::Vector2i getPos() const;
+    sf::Vector2i getSize() const;
+    sf::Vector2i getTileSize() const;
     sf::IntRect getBounds() const;
 
+    void setObject(EntityElement* entity, int idX = 0, int idY = 0);
+
 private:
-    sf::Vector2f pos;
+    sf::Vector2i id_pos;
     sf::Vector2i size;
     sf::Vector2i tile_size;
     sf::IntRect bounds;
+
+    sf::Vector2i id;
 
     ChunkLines chunk_lines;
 };

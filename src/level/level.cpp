@@ -1,9 +1,9 @@
 #include "level.h"
 
-#include <algorithm>
+sf::Vector2i            Level::tile_size;
+sf::Vector2i            Level::chunk_size;
 
 Level::Level()
-    : current_layer(nullptr)
 {
 
 }
@@ -20,28 +20,22 @@ void Level::loadFromFile(const QString &path)
 
 void Level::draw()
 {
-    if (current_layer)
+    for (ILayer* layer : layer_data)
     {
-        current_layer->draw();
+        layer->draw();
     }
 }
 
 void Level::update()
 {
-    if (current_layer)
+    for (ILayer* layer : layer_data)
     {
-        current_layer->update();
+        layer->update();
     }
 }
 
 ILayer *Level::getLayerFromName(const QString &name)
 {
-    // Проверяем, может текущий слой должен быть возвращён
-    if (current_layer->getName() == name)
-    {
-        return current_layer;
-    }
-
     // Ищем нужный слой, если нашли - возвращаем
     for (ILayer* layer : layer_data)
     {
@@ -57,12 +51,6 @@ ILayer *Level::getLayerFromName(const QString &name)
 
 QString Level::getNameFromLayer(ILayer *layer)
 {
-    // Проверяем, может должно возвратится имя текущего слоя
-    if (current_layer == layer)
-    {
-        return current_layer->getName();
-    }
-
     // Ищем нужный слой, если нашли - возвращаем его имя
     for (ILayer* _layer : layer_data)
     {
@@ -76,39 +64,8 @@ QString Level::getNameFromLayer(ILayer *layer)
     return "";
 }
 
-void Level::setCurrentLayer(const QString &name)
-{
-    // Получаем слой по имени
-    ILayer* layer = getLayerFromName(name);
-
-    // Проверяем, не является ли слой текущим
-    if (layer == current_layer)
-    {
-        return;
-    }
-
-    // TODO: СДЕЛАТЬ СОБЫТИЕ СМЕНЫ СЛОЯ
-
-    // Устанавливаем текущий слой
-    current_layer = layer;
-}
-
-ILayer *Level::getCurrentLayer()
-{
-    return current_layer;
-}
-
 void Level::addLayer(ILayer *layer)
 {
-    // Если текущий слой пустой
-    if (!current_layer)
-    {
-        current_layer = layer;
-    }
-
-    // Устанавливаем текущий слой
-    current_layer = layer;
-
     // Добавляем слой
     layer_data.push_back(layer);
 }
@@ -135,11 +92,27 @@ void Level::removeLayer(const QString &name)
         if (_layer == layer)
         {
             it = layer_data.erase(it);
-
-            // Теперь текущий элемент тот, кто шёл после удалённого
-            current_layer = *it;
-
             return;
         }
     }
+}
+
+void Level::setTileSize(const sf::Vector2i &tile_size)
+{
+    Level::tile_size = tile_size;
+}
+
+sf::Vector2i Level::getTileSize()
+{
+    return Level::tile_size;
+}
+
+void Level::setChunkSize(const sf::Vector2i &chunk_size)
+{
+    Level::chunk_size = chunk_size;
+}
+
+sf::Vector2i Level::getChunkSize()
+{
+    return Level::chunk_size;
 }

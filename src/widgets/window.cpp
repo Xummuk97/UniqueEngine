@@ -29,6 +29,55 @@ Window::Window(QWidget *parent)
 
     // Инициализация карты
     Globals::level = new Level();
+
+    // ИСПОЛЬЗОВАНИЕ ЧАНКОВ
+    Level::setTileSize({ 32, 32 });
+    Level::setChunkSize({ 3, 3 });
+
+    LayerNormal* layer = new LayerNormal("1");
+
+    {
+        Chunk* chunk = new Chunk({0, 0}, {3, 3}, {32, 32});
+
+        {
+            EntityElement* entity = new EntityElement();
+            sf::Texture texture;
+            texture.loadFromFile("");
+            entity->getSprite()->setTexture(texture);
+            entity->getSprite()->setTextureRect({0, 0, 32, 32});
+            chunk->setObject(entity, 0, 0);
+        }
+
+        {
+            EntityElement* entity = new EntityElement();
+            sf::Texture texture;
+            texture.loadFromFile("");
+            entity->getSprite()->setTexture(texture);
+            entity->getSprite()->setTextureRect({0, 0, 32, 32});
+            chunk->setObject(entity, 2, 2);
+        }
+
+        layer->addChunk(chunk);
+
+        Globals::level->addLayer(layer);
+    }
+
+    {
+        Chunk* chunk = new Chunk({1, 1}, {3, 3}, {32, 32});
+
+        {
+            EntityElement* entity = new EntityElement();
+            sf::Texture texture;
+            texture.loadFromFile("");
+            entity->getSprite()->setTexture(texture);
+            entity->getSprite()->setTextureRect({0, 0, 32, 32});
+            chunk->setObject(entity, 0, 0);
+        }
+
+        layer->addChunk(chunk);
+
+        Globals::level->addLayer(layer);
+    }
 }
 
 Window::~Window()

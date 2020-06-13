@@ -18,6 +18,11 @@ void IEntity::draw()
     Globals::window->getCanvas()->draw(sprite);
 }
 
+sf::Sprite *IEntity::getSprite()
+{
+    return &sprite;
+}
+
 
 
 EntityNormal::EntityNormal()

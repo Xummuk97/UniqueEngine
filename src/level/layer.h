@@ -47,6 +47,8 @@ public:
 
     QString getType() override;
 
+    void addChunk(Chunk* chunk);
+
 protected:
     ChunkData chunk_data;
 };

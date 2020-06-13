@@ -1,12 +1,14 @@
 #include "chunk.h"
 
-Chunk::Chunk(sf::Vector2f pos, sf::Vector2i size, sf::Vector2i tile_size)
-    : pos(pos),
+#include "level/level.h"
+
+Chunk::Chunk(sf::Vector2i id_pos, sf::Vector2i size, sf::Vector2i tile_size)
+    : id_pos(sf::Vector2i(id_pos.x * Level::getChunkSize().x, id_pos.y * Level::getChunkSize().y)),
       size(size),
       tile_size(tile_size),
 
       // Инициализируем область чанка на карте, она и проверяется на пересечение с игроком и является частью оптимизации
-      bounds(sf::IntRect(pos.x, pos.y, size.x * tile_size.x, size.y * tile_size.y))
+      bounds(sf::IntRect(id_pos.x * tile_size.x, id_pos.y * tile_size.y, size.x * tile_size.x, size.y * tile_size.y))
 {
 }
 
@@ -33,7 +35,49 @@ void Chunk::draw()
     }
 }
 
+sf::Vector2i Chunk::getIdPos() const
+{
+    return id_pos;
+}
+
+sf::Vector2i Chunk::getPos() const
+{
+    return sf::Vector2i(id_pos.x * tile_size.x, id_pos.y * tile_size.y);
+}
+
+sf::Vector2i Chunk::getSize() const
+{
+    return size;
+}
+
+sf::Vector2i Chunk::getTileSize() const
+{
+    return tile_size;
+}
+
 sf::IntRect Chunk::getBounds() const
 {
     return bounds;
+}
+
+void Chunk::setObject(EntityElement *entity, int idX, int idY)
+{
+    // Проверяем, не вышла ли x за пределы возможных значений
+    if (idX < 0 || idX >= size.x)
+    {
+        return;
+    }
+
+    // Проверяем, не вышла ли y за пределы возможных значений
+    if (idY < 0 || idY >= size.y)
+    {
+        return;
+    }
+
+    // Устанавливаем соответствующую позицию
+    sf::Vector2i pos = getPos();
+    entity->getSprite()->setPosition(pos.x + idX * tile_size.x, pos.y + idY * tile_size.y);
+
+    // Добавляем объект в Чанк
+    chunk_lines[QString("%1:%2").arg(idX).arg(idY)] = entity;
 }

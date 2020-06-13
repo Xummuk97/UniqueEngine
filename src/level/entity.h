@@ -22,6 +22,8 @@ public:
 
     virtual QString getType() = 0;
 
+    sf::Sprite* getSprite();
+
 private:
     sf::Sprite sprite;
 };

@@ -19,15 +19,20 @@ public:
     ILayer* getLayerFromName(const QString& name);
     QString getNameFromLayer(ILayer* layer);
 
-    void setCurrentLayer(const QString& name);
-    ILayer* getCurrentLayer();
-
     void addLayer(ILayer* layer);
     void removeLayer(const QString& name);
 
+    static void setTileSize(const sf::Vector2i& tile_size);
+    static sf::Vector2i getTileSize();
+
+    static void setChunkSize(const sf::Vector2i& chunk_size);
+    static sf::Vector2i getChunkSize();
+
 private:
     LayerData layer_data;
-    ILayer* current_layer;
+
+    static sf::Vector2i tile_size;
+    static sf::Vector2i chunk_size;
 };
 
 #endif // LEVEL_H

@@ -105,7 +105,7 @@ void SFMLCanvas::onUpdate()
     Globals::level->update();
 
     // Очищаем экран с заданием цвета заднего фона
-    clear(sf::Color(255, 255, 255));
+    clear(sf::Color(0, 0, 0));
 
     // Рисуем содержимое уровня
     Globals::level->draw();
