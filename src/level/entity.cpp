@@ -13,6 +13,11 @@ IEntity::~IEntity()
 
 }
 
+void IEntity::draw()
+{
+    Globals::window->getCanvas()->draw(sprite);
+}
+
 
 
 EntityNormal::EntityNormal()
@@ -25,7 +30,7 @@ EntityNormal::~EntityNormal()
 
 }
 
-void EntityNormal::draw()
+void EntityNormal::update()
 {
 
 }
@@ -33,11 +38,6 @@ void EntityNormal::draw()
 QString EntityNormal::getType()
 {
     return OBJECT_NORMAL;
-}
-
-void EntityNormal::onUpdate()
-{
-
 }
 
 
@@ -52,7 +52,7 @@ EntityElement::~EntityElement()
 
 }
 
-void EntityElement::draw()
+void EntityElement::update()
 {
 
 }
@@ -60,9 +60,4 @@ void EntityElement::draw()
 QString EntityElement::getType()
 {
     return OBJECT_ELEMENT;
-}
-
-void EntityElement::onUpdate()
-{
-
 }

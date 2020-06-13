@@ -18,6 +18,7 @@ public:
 
 private:
     LayerData layer_data;
+    ILayer* current_layer;
 };
 
 #endif // LEVEL_H

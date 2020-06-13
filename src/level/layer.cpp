@@ -24,12 +24,18 @@ LayerNormal::~LayerNormal()
 
 void LayerNormal::update()
 {
-
+    for (Chunk* chunk : chunk_data)
+    {
+        chunk->update();
+    }
 }
 
 void LayerNormal::draw()
 {
-
+    for (Chunk* chunk : chunk_data)
+    {
+        chunk->draw();
+    }
 }
 
 QString LayerNormal::getType()
@@ -51,12 +57,24 @@ LayerObjects::~LayerObjects()
 
 void LayerObjects::update()
 {
-
+    for (IEntity* entity : entity_data)
+    {
+        if (entity->getType() == OBJECT_NORMAL)
+        {
+            entity->update();
+        }
+    }
 }
 
 void LayerObjects::draw()
 {
-
+    for (IEntity* entity : entity_data)
+    {
+        if (entity->getType() == OBJECT_NORMAL)
+        {
+            entity->draw();
+        }
+    }
 }
 
 QString LayerObjects::getType()

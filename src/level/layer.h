@@ -9,6 +9,9 @@ using LayerData = QList<ILayer*>;
 
 
 
+/**
+ * @brief Класс Слоя
+*/
 class ILayer
 {
 public:
@@ -25,6 +28,9 @@ public:
 
 using ChunkMap = QMap<QString, Chunk*>;
 
+/**
+ * @brief Класс Обычного слоя (Содержит чанки, т.е. слой только рисует объекты)
+*/
 class LayerNormal : public ILayer
 {
 public:
@@ -36,12 +42,15 @@ public:
 
     QString getType() override;
 
-private:
+protected:
     ChunkMap chunk_data;
 };
 
 
 
+/**
+ * @brief Класс Слой объектов
+*/
 class LayerObjects : public ILayer
 {
 public:
@@ -54,7 +63,7 @@ public:
     QString getType() override;
 
 private:
-
+    EntityData entity_data;
 };
 
 #endif // LAYER_H

@@ -4,52 +4,62 @@
 #include <QtCore>
 #include <SFML/Graphics.hpp>
 
+class IEntity;
+
+using EntityData = QList<IEntity*>;
+
+/**
+ * @brief Интерфейс Объекта
+*/
 class IEntity
 {
 public:
     IEntity();
     ~IEntity();
 
-    virtual void draw() = 0;
+    virtual void draw();
+    virtual void update() = 0;
 
     virtual QString getType() = 0;
 
 private:
-    virtual void onUpdate() = 0;
-
     sf::Sprite sprite;
 };
 
 
 
+/**
+ * @brief Класс Обычного объекта (Объект с обработкой событий)
+*/
 class EntityNormal : public IEntity
 {
 public:
     EntityNormal();
     ~EntityNormal();
 
-    void draw() override;
+    void update() override;
 
     QString getType() override;
 
 private:
-    void onUpdate() override;
 };
 
 
 
+/**
+ * @brief Класс Элемента карты (обычный спрайт, используется в чанках)
+*/
 class EntityElement : public IEntity
 {
 public:
     EntityElement();
     ~EntityElement();
 
-    void draw() override;
+    void update() override;
 
     QString getType() override;
 
 private:
-    void onUpdate() override;
 };
 
 #endif // ENTITY_H
