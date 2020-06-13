@@ -16,6 +16,12 @@ public:
     void draw();
     void update();
 
+    ILayer* getLayerFromName(const QString& name);
+    QString getNameFromLayer(ILayer* layer);
+
+    void setCurrentLayer(const QString& name);
+    ILayer* getCurrentLayer();
+
 private:
     LayerData layer_data;
     ILayer* current_layer;
