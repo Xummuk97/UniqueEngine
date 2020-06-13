@@ -41,6 +41,11 @@ void LayerNormal::draw()
     }
 }
 
+void LayerNormal::clear()
+{
+
+}
+
 QString LayerNormal::getType()
 {
     return LAYER_NORMAL;
@@ -79,6 +84,11 @@ void LayerObjects::draw()
             entity->draw();
         }
     }
+}
+
+void LayerObjects::clear()
+{
+
 }
 
 QString LayerObjects::getType()

@@ -1,5 +1,7 @@
 #include "level.h"
 
+#include <algorithm>
+
 Level::Level()
     : current_layer(nullptr)
 {
@@ -94,4 +96,50 @@ void Level::setCurrentLayer(const QString &name)
 ILayer *Level::getCurrentLayer()
 {
     return current_layer;
+}
+
+void Level::addLayer(ILayer *layer)
+{
+    // Если текущий слой пустой
+    if (!current_layer)
+    {
+        current_layer = layer;
+    }
+
+    // Устанавливаем текущий слой
+    current_layer = layer;
+
+    // Добавляем слой
+    layer_data.push_back(layer);
+}
+
+void Level::removeLayer(const QString &name)
+{
+    // Получаем слой по имени
+    ILayer* layer = getLayerFromName(name);
+
+    // Проверяем, пуст ли слой
+    if (layer)
+    {
+        return;
+    }
+
+    // Очистка всех данных на слое
+    layer->clear();
+
+    // Удаляем слой с карты
+    for (auto it = layer_data.begin(); it != layer_data.end(); it++)
+    {
+        ILayer* _layer = *it;
+
+        if (_layer == layer)
+        {
+            it = layer_data.erase(it);
+
+            // Теперь текущий элемент тот, кто шёл после удалённого
+            current_layer = *it;
+
+            return;
+        }
+    }
 }

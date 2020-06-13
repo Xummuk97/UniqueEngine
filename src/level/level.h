@@ -22,6 +22,9 @@ public:
     void setCurrentLayer(const QString& name);
     ILayer* getCurrentLayer();
 
+    void addLayer(ILayer* layer);
+    void removeLayer(const QString& name);
+
 private:
     LayerData layer_data;
     ILayer* current_layer;

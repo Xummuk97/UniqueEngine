@@ -20,6 +20,7 @@ public:
 
     virtual void update() = 0;
     virtual void draw() = 0;
+    virtual void clear() = 0;
 
     virtual QString getType() = 0;
 
@@ -42,6 +43,7 @@ public:
 
     void update() override;
     void draw() override;
+    void clear() override;
 
     QString getType() override;
 
@@ -62,6 +64,7 @@ public:
 
     void update() override;
     void draw() override;
+    void clear() override;
 
     QString getType() override;
 
