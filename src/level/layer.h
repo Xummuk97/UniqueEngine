@@ -15,18 +15,21 @@ using LayerData = QList<ILayer*>;
 class ILayer
 {
 public:
-    ILayer();
+    ILayer(const QString& name);
     ~ILayer();
 
     virtual void update() = 0;
     virtual void draw() = 0;
 
     virtual QString getType() = 0;
+
+    QString getName() const;
+
+protected:
+    QString name;
 };
 
 
-
-using ChunkMap = QMap<QString, Chunk*>;
 
 /**
  * @brief Класс Обычного слоя (Содержит чанки, т.е. слой только рисует объекты)
@@ -34,7 +37,7 @@ using ChunkMap = QMap<QString, Chunk*>;
 class LayerNormal : public ILayer
 {
 public:
-    LayerNormal();
+    LayerNormal(const QString& name);
     ~LayerNormal();
 
     void update() override;
@@ -43,7 +46,7 @@ public:
     QString getType() override;
 
 protected:
-    ChunkMap chunk_data;
+    ChunkData chunk_data;
 };
 
 
@@ -54,7 +57,7 @@ protected:
 class LayerObjects : public ILayer
 {
 public:
-    LayerObjects();
+    LayerObjects(const QString& name);
     ~LayerObjects();
 
     void update() override;

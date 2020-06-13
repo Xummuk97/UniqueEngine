@@ -1,9 +1,25 @@
 #ifndef CHUNK_H
 #define CHUNK_H
 
+#include <SFML/Graphics.hpp>
+
 #include "level/entity.h"
 
 class Chunk;
+
+/**
+ * @brief Тип данных хранения Чанков
+ *
+ * Ключ - индекс чанка "idX:idY" (Индексы высчитываются путем pos / tile_size)
+*/
+using ChunkData = QMap<QString, Chunk*>;
+
+/**
+ * @brief Линии чанков по x:y
+ *
+ * Ключ ассоциативного массива - его индекс по x:y в строковом представлении относительно позиции всего чанка
+*/
+using ChunkLines = QMap<QString, EntityElement*>;
 
 /**
  * @brief Класс Чанков
@@ -14,14 +30,20 @@ class Chunk;
 class Chunk
 {
 public:
-    Chunk(int size);
+    Chunk(sf::Vector2f pos, sf::Vector2i size, sf::Vector2i tile_size);
     ~Chunk();
 
-    void update();
     void draw();
 
+    sf::IntRect getBounds() const;
+
 private:
-    int size;
+    sf::Vector2f pos;
+    sf::Vector2i size;
+    sf::Vector2i tile_size;
+    sf::IntRect bounds;
+
+    ChunkLines chunk_lines;
 };
 
 #endif // CHUNK_H

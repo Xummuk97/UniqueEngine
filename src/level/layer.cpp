@@ -2,7 +2,8 @@
 
 #include "macros.h"
 
-ILayer::ILayer()
+ILayer::ILayer(const QString& name)
+    : name(name)
 {
 }
 
@@ -10,9 +11,15 @@ ILayer::~ILayer()
 {
 }
 
+QString ILayer::getName() const
+{
+    return name;
+}
 
 
-LayerNormal::LayerNormal()
+
+LayerNormal::LayerNormal(const QString& name)
+    : ILayer(name)
 {
 
 }
@@ -24,10 +31,6 @@ LayerNormal::~LayerNormal()
 
 void LayerNormal::update()
 {
-    for (Chunk* chunk : chunk_data)
-    {
-        chunk->update();
-    }
 }
 
 void LayerNormal::draw()
@@ -45,7 +48,8 @@ QString LayerNormal::getType()
 
 
 
-LayerObjects::LayerObjects()
+LayerObjects::LayerObjects(const QString& name)
+    : ILayer(name)
 {
 
 }
