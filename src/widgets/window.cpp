@@ -34,10 +34,11 @@ Window::Window(QWidget *parent)
     Level::setTileSize({ 32, 32 });
     Level::setChunkSize({ 3, 3 });
 
+
     LayerNormal* layer = new LayerNormal("1");
 
     {
-        Chunk* chunk = new Chunk({0, 0}, {3, 3}, {32, 32});
+        Chunk* chunk = new Chunk({0, 0});
 
         {
             EntityElement* entity = new EntityElement();
@@ -59,11 +60,14 @@ Window::Window(QWidget *parent)
 
         layer->addChunk(chunk);
 
+        sf::IntRect rect = chunk->getBounds();
+        QMessageBox::about(nullptr, "", QString("%1 %2 %3 %4").arg(rect.left).arg(rect.top).arg(rect.width).arg(rect.height));
+
         Globals::level->addLayer(layer);
     }
 
     {
-        Chunk* chunk = new Chunk({1, 1}, {3, 3}, {32, 32});
+        Chunk* chunk = new Chunk({1, 1});
 
         {
             EntityElement* entity = new EntityElement();
@@ -75,6 +79,9 @@ Window::Window(QWidget *parent)
         }
 
         layer->addChunk(chunk);
+
+        sf::IntRect rect = chunk->getBounds();
+        QMessageBox::about(nullptr, "", QString("%1 %2 %3 %4").arg(rect.left).arg(rect.top).arg(rect.width).arg(rect.height));
 
         Globals::level->addLayer(layer);
     }

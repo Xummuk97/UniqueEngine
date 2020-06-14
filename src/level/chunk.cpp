@@ -2,10 +2,10 @@
 
 #include "level/level.h"
 
-Chunk::Chunk(sf::Vector2i id_pos, sf::Vector2i size, sf::Vector2i tile_size)
+Chunk::Chunk(const sf::Vector2i& id_pos)
     : id_pos(sf::Vector2i(id_pos.x * Level::getChunkSize().x, id_pos.y * Level::getChunkSize().y)),
-      size(size),
-      tile_size(tile_size),
+      size(Level::getChunkSize()),
+      tile_size(Level::getTileSize()),
 
       // Инициализируем область чанка на карте, она и проверяется на пересечение с игроком и является частью оптимизации
       bounds(sf::IntRect(id_pos.x * tile_size.x, id_pos.y * tile_size.y, size.x * tile_size.x, size.y * tile_size.y))

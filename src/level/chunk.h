@@ -30,7 +30,7 @@ using ChunkLines = QMap<QString, EntityElement*>;
 class Chunk
 {
 public:
-    Chunk(sf::Vector2i id_pos, sf::Vector2i size, sf::Vector2i tile_size);
+    Chunk(const sf::Vector2i& id_pos);
     ~Chunk();
 
     void draw();
