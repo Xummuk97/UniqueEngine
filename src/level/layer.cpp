@@ -35,7 +35,7 @@ void LayerNormal::update()
 
 void LayerNormal::draw()
 {
-    for (Chunk* chunk : chunk_data)
+    for (auto chunk : chunk_data)
     {
         chunk->draw();
     }
@@ -54,7 +54,7 @@ QString LayerNormal::getType()
 void LayerNormal::addChunk(Chunk *chunk)
 {
     // Получаем идентификатор Чанка
-    sf::Vector2i id_pos = chunk->getIdPos();
+    auto id_pos = chunk->getIdPos();
 
     // Добавляем Чанк в ассоциативый массив
     chunk_data[QString("%1:%2").arg(id_pos.x).arg(id_pos.y)] = chunk;
@@ -75,7 +75,7 @@ LayerObjects::~LayerObjects()
 
 void LayerObjects::update()
 {
-    for (EntityAbstrart* entity : entity_data)
+    for (auto entity : entity_data)
     {
         if (entity->getType() == OBJECT_NORMAL)
         {
@@ -86,7 +86,7 @@ void LayerObjects::update()
 
 void LayerObjects::draw()
 {
-    for (EntityAbstrart* entity : entity_data)
+    for (auto entity : entity_data)
     {
         if (entity->getType() == OBJECT_NORMAL)
         {

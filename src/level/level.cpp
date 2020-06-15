@@ -22,7 +22,7 @@ void Level::loadFromFile(const QString &path)
 
 void Level::draw()
 {
-    for (LayerAbstract* layer : layer_data)
+    for (auto layer : layer_data)
     {
         layer->draw();
     }
@@ -30,7 +30,7 @@ void Level::draw()
 
 void Level::update()
 {
-    for (LayerAbstract* layer : layer_data)
+    for (auto layer : layer_data)
     {
         layer->update();
     }
@@ -39,7 +39,7 @@ void Level::update()
 LayerAbstract *Level::getLayerFromName(const QString &name)
 {
     // Ищем нужный слой, если нашли - возвращаем
-    for (LayerAbstract* layer : layer_data)
+    for (auto layer : layer_data)
     {
         if (layer->getName() == name)
         {
@@ -54,7 +54,7 @@ LayerAbstract *Level::getLayerFromName(const QString &name)
 QString Level::getNameFromLayer(LayerAbstract *layer)
 {
     // Ищем нужный слой, если нашли - возвращаем его имя
-    for (LayerAbstract* _layer : layer_data)
+    for (auto _layer : layer_data)
     {
         if (_layer == layer)
         {
@@ -75,7 +75,7 @@ void Level::addLayer(LayerAbstract *layer)
 void Level::removeLayer(const QString &name)
 {
     // Получаем слой по имени
-    LayerAbstract* layer = getLayerFromName(name);
+    auto layer = getLayerFromName(name);
 
     // Проверяем, пуст ли слой
     if (layer)
@@ -89,7 +89,7 @@ void Level::removeLayer(const QString &name)
     // Удаляем слой с карты
     for (auto it = layer_data.begin(); it != layer_data.end(); it++)
     {
-        LayerAbstract* _layer = *it;
+        auto _layer = *it;
 
         if (_layer == layer)
         {

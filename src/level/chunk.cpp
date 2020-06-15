@@ -23,7 +23,7 @@ void Chunk::draw()
     {
         for (int x = 0; x < size.x; x++)
         {
-            EntityElement* entity = chunk_lines[QString("%1:%2").arg(x).arg(y)];
+            auto entity = chunk_lines[QString("%1:%2").arg(x).arg(y)];
 
             // Элемент чанка может быть пуст
             if (entity)
@@ -42,7 +42,7 @@ sf::Vector2i Chunk::getIdPos() const
 
 sf::Vector2i Chunk::getPos() const
 {
-    return sf::Vector2i(id_pos.x * tile_size.x, id_pos.y * tile_size.y);
+    return { id_pos.x * tile_size.x, id_pos.y * tile_size.y };
 }
 
 sf::Vector2i Chunk::getSize() const
@@ -75,7 +75,7 @@ void Chunk::setObject(EntityElement *entity, int idX, int idY)
     }
 
     // Устанавливаем соответствующую позицию
-    sf::Vector2i pos = getPos();
+    auto pos = getPos();
     entity->setPosition(pos.x + idX * tile_size.x, pos.y + idY * tile_size.y);
 
     // Добавляем объект в Чанк
