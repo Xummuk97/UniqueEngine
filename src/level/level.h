@@ -16,10 +16,10 @@ public:
     void draw();
     void update();
 
-    ILayer* getLayerFromName(const QString& name);
-    QString getNameFromLayer(ILayer* layer);
+    LayerAbstract* getLayerFromName(const QString& name);
+    QString getNameFromLayer(LayerAbstract* layer);
 
-    void addLayer(ILayer* layer);
+    void addLayer(LayerAbstract* layer);
     void removeLayer(const QString& name);
 
     static void setTileSize(const sf::Vector2i& tile_size);

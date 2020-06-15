@@ -2,16 +2,16 @@
 
 #include "macros.h"
 
-ILayer::ILayer(const QString& name)
+LayerAbstract::LayerAbstract(const QString& name)
     : name(name)
 {
 }
 
-ILayer::~ILayer()
+LayerAbstract::~LayerAbstract()
 {
 }
 
-QString ILayer::getName() const
+QString LayerAbstract::getName() const
 {
     return name;
 }
@@ -19,7 +19,7 @@ QString ILayer::getName() const
 
 
 LayerNormal::LayerNormal(const QString& name)
-    : ILayer(name)
+    : LayerAbstract(name)
 {
 
 }
@@ -63,7 +63,7 @@ void LayerNormal::addChunk(Chunk *chunk)
 
 
 LayerObjects::LayerObjects(const QString& name)
-    : ILayer(name)
+    : LayerAbstract(name)
 {
 
 }
@@ -75,7 +75,7 @@ LayerObjects::~LayerObjects()
 
 void LayerObjects::update()
 {
-    for (IEntity* entity : entity_data)
+    for (EntityAbstrart* entity : entity_data)
     {
         if (entity->getType() == OBJECT_NORMAL)
         {
@@ -86,7 +86,7 @@ void LayerObjects::update()
 
 void LayerObjects::draw()
 {
-    for (IEntity* entity : entity_data)
+    for (EntityAbstrart* entity : entity_data)
     {
         if (entity->getType() == OBJECT_NORMAL)
         {

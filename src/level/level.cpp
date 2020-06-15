@@ -5,7 +5,9 @@ sf::Vector2i            Level::chunk_size;
 
 Level::Level()
 {
-
+    // Инициализация чанков
+    Level::setTileSize({ 32, 32 });
+    Level::setChunkSize({ 3, 3 });
 }
 
 Level::~Level()
@@ -20,7 +22,7 @@ void Level::loadFromFile(const QString &path)
 
 void Level::draw()
 {
-    for (ILayer* layer : layer_data)
+    for (LayerAbstract* layer : layer_data)
     {
         layer->draw();
     }
@@ -28,16 +30,16 @@ void Level::draw()
 
 void Level::update()
 {
-    for (ILayer* layer : layer_data)
+    for (LayerAbstract* layer : layer_data)
     {
         layer->update();
     }
 }
 
-ILayer *Level::getLayerFromName(const QString &name)
+LayerAbstract *Level::getLayerFromName(const QString &name)
 {
     // Ищем нужный слой, если нашли - возвращаем
-    for (ILayer* layer : layer_data)
+    for (LayerAbstract* layer : layer_data)
     {
         if (layer->getName() == name)
         {
@@ -49,10 +51,10 @@ ILayer *Level::getLayerFromName(const QString &name)
     return nullptr;
 }
 
-QString Level::getNameFromLayer(ILayer *layer)
+QString Level::getNameFromLayer(LayerAbstract *layer)
 {
     // Ищем нужный слой, если нашли - возвращаем его имя
-    for (ILayer* _layer : layer_data)
+    for (LayerAbstract* _layer : layer_data)
     {
         if (_layer == layer)
         {
@@ -64,7 +66,7 @@ QString Level::getNameFromLayer(ILayer *layer)
     return "";
 }
 
-void Level::addLayer(ILayer *layer)
+void Level::addLayer(LayerAbstract *layer)
 {
     // Добавляем слой
     layer_data.push_back(layer);
@@ -73,7 +75,7 @@ void Level::addLayer(ILayer *layer)
 void Level::removeLayer(const QString &name)
 {
     // Получаем слой по имени
-    ILayer* layer = getLayerFromName(name);
+    LayerAbstract* layer = getLayerFromName(name);
 
     // Проверяем, пуст ли слой
     if (layer)
@@ -87,7 +89,7 @@ void Level::removeLayer(const QString &name)
     // Удаляем слой с карты
     for (auto it = layer_data.begin(); it != layer_data.end(); it++)
     {
-        ILayer* _layer = *it;
+        LayerAbstract* _layer = *it;
 
         if (_layer == layer)
         {

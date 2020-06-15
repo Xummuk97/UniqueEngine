@@ -3,24 +3,39 @@
 #include "macros.h"
 #include "globals.h"
 
-IEntity::IEntity()
+EntityAbstrart::EntityAbstrart()
 {
 
 }
 
-IEntity::~IEntity()
+EntityAbstrart::~EntityAbstrart()
 {
 
 }
 
-void IEntity::draw()
+void EntityAbstrart::draw()
 {
     Globals::window->getCanvas()->draw(sprite);
 }
 
-sf::Sprite *IEntity::getSprite()
+void EntityAbstrart::setPosition(float x, float y)
 {
-    return &sprite;
+    sprite.setPosition(x, y);
+}
+
+void EntityAbstrart::move(float x, float y)
+{
+    sprite.move(x, y);
+}
+
+void EntityAbstrart::setTexture(const sf::Texture &texture)
+{
+    sprite.setTexture(texture);
+}
+
+void EntityAbstrart::setTextureRect(const sf::IntRect &rect)
+{
+    sprite.setTextureRect(rect);
 }
 
 

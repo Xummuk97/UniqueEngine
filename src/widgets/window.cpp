@@ -29,62 +29,6 @@ Window::Window(QWidget *parent)
 
     // Инициализация карты
     Globals::level = new Level();
-
-    // ИСПОЛЬЗОВАНИЕ ЧАНКОВ
-    Level::setTileSize({ 32, 32 });
-    Level::setChunkSize({ 3, 3 });
-
-
-    LayerNormal* layer = new LayerNormal("1");
-
-    {
-        Chunk* chunk = new Chunk({0, 0});
-
-        {
-            EntityElement* entity = new EntityElement();
-            sf::Texture texture;
-            texture.loadFromFile("");
-            entity->getSprite()->setTexture(texture);
-            entity->getSprite()->setTextureRect({0, 0, 32, 32});
-            chunk->setObject(entity, 0, 0);
-        }
-
-        {
-            EntityElement* entity = new EntityElement();
-            sf::Texture texture;
-            texture.loadFromFile("");
-            entity->getSprite()->setTexture(texture);
-            entity->getSprite()->setTextureRect({0, 0, 32, 32});
-            chunk->setObject(entity, 2, 2);
-        }
-
-        layer->addChunk(chunk);
-
-        sf::IntRect rect = chunk->getBounds();
-        QMessageBox::about(nullptr, "", QString("%1 %2 %3 %4").arg(rect.left).arg(rect.top).arg(rect.width).arg(rect.height));
-
-        Globals::level->addLayer(layer);
-    }
-
-    {
-        Chunk* chunk = new Chunk({1, 1});
-
-        {
-            EntityElement* entity = new EntityElement();
-            sf::Texture texture;
-            texture.loadFromFile("");
-            entity->getSprite()->setTexture(texture);
-            entity->getSprite()->setTextureRect({0, 0, 32, 32});
-            chunk->setObject(entity, 0, 0);
-        }
-
-        layer->addChunk(chunk);
-
-        sf::IntRect rect = chunk->getBounds();
-        QMessageBox::about(nullptr, "", QString("%1 %2 %3 %4").arg(rect.left).arg(rect.top).arg(rect.width).arg(rect.height));
-
-        Globals::level->addLayer(layer);
-    }
 }
 
 Window::~Window()

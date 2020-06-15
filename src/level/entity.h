@@ -4,27 +4,30 @@
 #include <QtCore>
 #include <SFML/Graphics.hpp>
 
-class IEntity;
+class EntityAbstrart;
 
-using EntityData = QList<IEntity*>;
+using EntityData = QList<EntityAbstrart*>;
 
 /**
- * @brief Интерфейс Объекта
+ * @brief Абстрактный класс Объекта
 */
-class IEntity
+class EntityAbstrart
 {
 public:
-    IEntity();
-    ~IEntity();
+    EntityAbstrart();
+    ~EntityAbstrart();
 
     virtual void draw();
     virtual void update() = 0;
 
     virtual QString getType() = 0;
 
-    sf::Sprite* getSprite();
+    virtual void setPosition(float x, float y);
+    virtual void move(float x, float y);
+    virtual void setTexture(const sf::Texture& texture);
+    virtual void setTextureRect(const sf::IntRect& rect);
 
-private:
+protected:
     sf::Sprite sprite;
 };
 
@@ -33,7 +36,7 @@ private:
 /**
  * @brief Класс Обычного объекта (Объект с обработкой событий)
 */
-class EntityNormal : public IEntity
+class EntityNormal : public EntityAbstrart
 {
 public:
     EntityNormal();
@@ -51,7 +54,7 @@ private:
 /**
  * @brief Класс Элемента карты (обычный спрайт, используется в чанках)
 */
-class EntityElement : public IEntity
+class EntityElement : public EntityAbstrart
 {
 public:
     EntityElement();

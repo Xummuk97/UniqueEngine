@@ -3,20 +3,20 @@
 
 #include "level/chunk.h"
 
-class ILayer;
+class LayerAbstract;
 
-using LayerData = QList<ILayer*>;
+using LayerData = QList<LayerAbstract*>;
 
 
 
 /**
- * @brief Класс Слоя
+ * @brief Абстрактный класс Слоя
 */
-class ILayer
+class LayerAbstract
 {
 public:
-    ILayer(const QString& name);
-    ~ILayer();
+    LayerAbstract(const QString& name);
+    ~LayerAbstract();
 
     virtual void update() = 0;
     virtual void draw() = 0;
@@ -35,7 +35,7 @@ protected:
 /**
  * @brief Класс Обычного слоя (Содержит чанки, т.е. слой только рисует объекты)
 */
-class LayerNormal : public ILayer
+class LayerNormal : public LayerAbstract
 {
 public:
     LayerNormal(const QString& name);
@@ -58,7 +58,7 @@ protected:
 /**
  * @brief Класс Слой объектов
 */
-class LayerObjects : public ILayer
+class LayerObjects : public LayerAbstract
 {
 public:
     LayerObjects(const QString& name);

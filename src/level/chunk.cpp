@@ -76,7 +76,7 @@ void Chunk::setObject(EntityElement *entity, int idX, int idY)
 
     // Устанавливаем соответствующую позицию
     sf::Vector2i pos = getPos();
-    entity->getSprite()->setPosition(pos.x + idX * tile_size.x, pos.y + idY * tile_size.y);
+    entity->setPosition(pos.x + idX * tile_size.x, pos.y + idY * tile_size.y);
 
     // Добавляем объект в Чанк
     chunk_lines[QString("%1:%2").arg(idX).arg(idY)] = entity;
