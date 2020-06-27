@@ -3,37 +3,51 @@
 #include "macros.h"
 #include "globals.h"
 
-EntityAbstrart::EntityAbstrart()
+
+
+EntityAbstract::EntityAbstract()
+    : QObject()
 {
 
 }
 
-EntityAbstrart::~EntityAbstrart()
+EntityAbstract::~EntityAbstract()
 {
 
 }
 
-void EntityAbstrart::draw()
+void EntityAbstract::draw()
 {
     Globals::window->getCanvas()->draw(sprite);
 }
 
-void EntityAbstrart::setPosition(float x, float y)
+void EntityAbstract::setPosition(float x, float y)
 {
-    sprite.setPosition(x, y);
+    sf::Vector2f prevPosition = sprite.getPosition();
+    sf::Vector2f currentPosition = emit onChangePosition(prevPosition, sf::Vector2f(x, y));
+
+    sprite.setPosition(currentPosition);
 }
 
-void EntityAbstrart::move(float x, float y)
+void EntityAbstract::move(float x, float y)
 {
-    sprite.move(x, y);
+    sf::Vector2f prevPosition = sprite.getPosition();
+
+    sf::Vector2f currentPosition = prevPosition;
+    currentPosition.x += x;
+    currentPosition.y += y;
+
+    currentPosition = emit onChangePosition(prevPosition, currentPosition);
+
+    sprite.move(currentPosition);
 }
 
-void EntityAbstrart::setTexture(const sf::Texture &texture)
+void EntityAbstract::setTexture(const sf::Texture &texture)
 {
     sprite.setTexture(texture);
 }
 
-void EntityAbstrart::setTextureRect(const sf::IntRect &rect)
+void EntityAbstract::setTextureRect(const sf::IntRect &rect)
 {
     sprite.setTextureRect(rect);
 }

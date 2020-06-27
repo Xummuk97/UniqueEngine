@@ -3,7 +3,7 @@
 
 #include <QtCore>
 
-const QString   PROG_VERSION = "0.0.1_alpha"; /* Версия проекта */
+const QString   PROG_VERSION    = "0.0.1_alpha"; /* Версия проекта */
 
 
 
@@ -19,5 +19,8 @@ const QString   LAYER_OBJECTS   = "objects";                                    
 
 const QString   OBJECT_NORMAL   = "normal";                                         /* Нормальный объект */
 const QString   OBJECT_ELEMENT  = "element";                                        /* Элемент карты */
+
+/* OE - Object Events (События объекта) */
+const QString   OE_POS_CHANGE   = "pos_change";                                     /* Позиция изменилась */
 
 #endif // MACROS_H

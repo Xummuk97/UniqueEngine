@@ -16,7 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    event.cpp \
     globals.cpp \
     level/chunk.cpp \
     level/entity.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
     widgets/window.cpp
 
 HEADERS += \
-    event.h \
     globals.h \
     level/chunk.h \
     level/entity.h \

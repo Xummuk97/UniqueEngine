@@ -4,28 +4,33 @@
 #include <QtCore>
 #include <SFML/Graphics.hpp>
 
-class EntityAbstrart;
+class EntityAbstract;
 
-using EntityData = QList<EntityAbstrart*>;
+using EntityData = QList<EntityAbstract*>;
 
 /**
  * @brief Абстрактный класс Объекта
 */
-class EntityAbstrart
+class EntityAbstract : public QObject
 {
+    Q_OBJECT
+
 public:
-    EntityAbstrart();
-    ~EntityAbstrart();
+    EntityAbstract();
+    ~EntityAbstract();
 
     virtual void draw();
     virtual void update() = 0;
 
     virtual QString getType() = 0;
 
-    virtual void setPosition(float x, float y);
-    virtual void move(float x, float y);
-    virtual void setTexture(const sf::Texture& texture);
-    virtual void setTextureRect(const sf::IntRect& rect);
+    void setPosition(float x, float y);
+    void move(float x, float y);
+    void setTexture(const sf::Texture& texture);
+    void setTextureRect(const sf::IntRect& rect);
+
+signals:
+    sf::Vector2f onChangePosition(const sf::Vector2f& prevPosition, const sf::Vector2f& currentPosition);
 
 protected:
     sf::Sprite sprite;
@@ -36,7 +41,7 @@ protected:
 /**
  * @brief Класс Обычного объекта (Объект с обработкой событий)
 */
-class EntityNormal : public EntityAbstrart
+class EntityNormal : public EntityAbstract
 {
 public:
     EntityNormal();
@@ -54,7 +59,7 @@ private:
 /**
  * @brief Класс Элемента карты (обычный спрайт, используется в чанках)
 */
-class EntityElement : public EntityAbstrart
+class EntityElement : public EntityAbstract
 {
 public:
     EntityElement();
