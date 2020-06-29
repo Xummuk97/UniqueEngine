@@ -29,6 +29,16 @@ Window::Window(QWidget *parent)
 
     // Инициализация карты
     Globals::level = new Level();
+
+    Globals::resources.setTexture("new1", ":/textures/tex_1.png");
+    LayerObjects* l = new LayerObjects("l1");
+
+    EntityNormal* o = new EntityNormal("player");
+    o->setTexture(Globals::resources.getTexture("new1"));
+    o->setTextureRect(sf::IntRect(0, 0, 32, 32));
+    l->addEntity(o);
+
+    Globals::level->addLayer(l);
 }
 
 Window::~Window()

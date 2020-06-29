@@ -42,9 +42,9 @@ void EntityAbstract::move(float x, float y)
     sprite.move(currentPosition);
 }
 
-void EntityAbstract::setTexture(const sf::Texture &texture)
+void EntityAbstract::setTexture(sf::Texture* texture)
 {
-    sprite.setTexture(texture);
+    sprite.setTexture(*texture);
 }
 
 void EntityAbstract::setTextureRect(const sf::IntRect &rect)
@@ -54,7 +54,8 @@ void EntityAbstract::setTextureRect(const sf::IntRect &rect)
 
 
 
-EntityNormal::EntityNormal()
+EntityNormal::EntityNormal(const QString& name)
+    : name(name)
 {
 
 }
@@ -72,6 +73,11 @@ void EntityNormal::update()
 QString EntityNormal::getType()
 {
     return OBJECT_NORMAL;
+}
+
+QString EntityNormal::getName() const
+{
+    return name;
 }
 
 

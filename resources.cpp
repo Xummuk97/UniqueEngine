@@ -14,10 +14,11 @@ Resources::~Resources()
 
 void Resources::setTexture(const QString &name, const QString &path)
 {
-    sf::Texture* texture = new sf::Texture();
+    sf::Texture* texture;
 
-    if (name.indexOf(":/") != -1)
+    if (!path.contains(":/"))
     {
+        texture = new sf::Texture();
         texture->loadFromFile(path.toStdString());
     }
     else
@@ -28,7 +29,7 @@ void Resources::setTexture(const QString &name, const QString &path)
     textures[name] = texture;
 }
 
-sf::Texture Resources::getTexture(const QString &name)
+sf::Texture* Resources::getTexture(const QString &name)
 {
-    return *textures[name];
+    return textures[name];
 }

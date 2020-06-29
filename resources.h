@@ -12,7 +12,7 @@ public:
     ~Resources();
 
     void setTexture(const QString& name, const QString& path);
-    sf::Texture getTexture(const QString& name);
+    sf::Texture* getTexture(const QString& name);
 
 private:
     QMap<QString, sf::Texture*> textures;

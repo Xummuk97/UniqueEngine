@@ -30,7 +30,7 @@ QSFMLCanvas::~QSFMLCanvas()
 sf::Texture* QSFMLCanvas::loadTextureFromQtRes(const QString &path)
 {
     // Загрузка изображения из файла ресурсов и занесение его данных в буфер
-    QPixmap pixmap(QString(":/%1").arg(path));
+    QPixmap pixmap(path);
     QByteArray bArray;
     QBuffer buffer(&bArray);
     buffer.open(QIODevice::WriteOnly);

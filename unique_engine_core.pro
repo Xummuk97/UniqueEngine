@@ -51,3 +51,6 @@ else:unix: LIBS += -L$$PWD/SFML-2.5.1/lib/ -lsfml-audio -lsfml-graphics -lsfml-n
 
 INCLUDEPATH += $$PWD/SFML-2.5.1/include
 DEPENDPATH += $$PWD/SFML-2.5.1/include
+
+RESOURCES += \
+    res.qrc

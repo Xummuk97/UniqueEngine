@@ -77,10 +77,7 @@ void LayerObjects::update()
 {
     for (auto entity : entity_data)
     {
-        if (entity->getType() == OBJECT_NORMAL)
-        {
-            entity->update();
-        }
+        entity->update();
     }
 }
 
@@ -88,10 +85,7 @@ void LayerObjects::draw()
 {
     for (auto entity : entity_data)
     {
-        if (entity->getType() == OBJECT_NORMAL)
-        {
-            entity->draw();
-        }
+        entity->draw();
     }
 }
 
@@ -103,4 +97,9 @@ void LayerObjects::clear()
 QString LayerObjects::getType()
 {
     return LAYER_OBJECTS;
+}
+
+void LayerObjects::addEntity(EntityNormal *entity)
+{
+    entity_data.push_back(entity);
 }

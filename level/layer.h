@@ -7,8 +7,6 @@ class LayerAbstract;
 
 using LayerData = QList<LayerAbstract*>;
 
-
-
 /**
  * @brief Абстрактный класс Слоя
 */
@@ -54,6 +52,7 @@ protected:
 };
 
 
+using EntityData = QList<EntityNormal*>;
 
 /**
  * @brief Класс Слой объектов
@@ -69,6 +68,8 @@ public:
     void clear() override;
 
     QString getType() override;
+
+    void addEntity(EntityNormal* entity);
 
 private:
     EntityData entity_data;

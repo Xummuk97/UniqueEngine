@@ -6,8 +6,6 @@
 
 class EntityAbstract;
 
-using EntityData = QList<EntityAbstract*>;
-
 /**
  * @brief Абстрактный класс Объекта
 */
@@ -26,7 +24,7 @@ public:
 
     void setPosition(float x, float y);
     void move(float x, float y);
-    void setTexture(const sf::Texture& texture);
+    void setTexture(sf::Texture* texture);
     void setTextureRect(const sf::IntRect& rect);
 
 signals:
@@ -44,14 +42,17 @@ protected:
 class EntityNormal : public EntityAbstract
 {
 public:
-    EntityNormal();
+    EntityNormal(const QString& name);
     ~EntityNormal();
 
     void update() override;
 
     QString getType() override;
 
+    QString getName() const;
+
 private:
+    QString name;
 };
 
 
@@ -68,8 +69,6 @@ public:
     void update() override;
 
     QString getType() override;
-
-private:
 };
 
 #endif // ENTITY_H

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/textures">
+        <file alias="tex_1.png">resources/private/textures/mistery_aborotory (1).png</file>
+    </qresource>
+</RCC>
