@@ -6,6 +6,7 @@
 
 #include "widgets/window.h"
 #include "level/level.h"
+#include "resources.h"
 
 /**
  * @brief Класс глобальных переменных
@@ -17,6 +18,8 @@ public:
     static Level*       level;  /* Уровень */
 
     static sf::View     view;   /* Камера */
+
+    static Resources    resources; /* Ресурсы */
 };
 
 #endif // GLOBALS_H

@@ -3,3 +3,4 @@
 Window*             Globals::window;
 Level*              Globals::level;
 sf::View            Globals::view;
+Resources           Globals::resources;

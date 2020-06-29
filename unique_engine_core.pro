@@ -22,6 +22,7 @@ SOURCES += \
     level/layer.cpp \
     level/level.cpp \
     main.cpp \
+    resources.cpp \
     widgets/canvas.cpp \
     widgets/window.cpp
 
@@ -32,6 +33,7 @@ HEADERS += \
     level/layer.h \
     level/level.h \
     macros.h \
+    resources.h \
     widgets/canvas.h \
     widgets/window.h
 

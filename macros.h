@@ -20,7 +20,8 @@ const QString   LAYER_OBJECTS   = "objects";                                    
 const QString   OBJECT_NORMAL   = "normal";                                         /* Нормальный объект */
 const QString   OBJECT_ELEMENT  = "element";                                        /* Элемент карты */
 
-/* OE - Object Events (События объекта) */
-const QString   OE_POS_CHANGE   = "pos_change";                                     /* Позиция изменилась */
+
+
+const QString   RESOURCE_TEXTURE = "texture";                                         /* Ресурс текстуры */
 
 #endif // MACROS_H

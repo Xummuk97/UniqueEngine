@@ -34,7 +34,7 @@ public:
      *
      * @return Текстура
     */
-    static sf::Texture loadTextureFromQtRes(const QString& path);
+    static sf::Texture* loadTextureFromQtRes(const QString& path);
 
 private:
     /**

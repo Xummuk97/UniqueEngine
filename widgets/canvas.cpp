@@ -27,7 +27,7 @@ QSFMLCanvas::~QSFMLCanvas()
 {
 }
 
-sf::Texture QSFMLCanvas::loadTextureFromQtRes(const QString &path)
+sf::Texture* QSFMLCanvas::loadTextureFromQtRes(const QString &path)
 {
     // Загрузка изображения из файла ресурсов и занесение его данных в буфер
     QPixmap pixmap(QString(":/%1").arg(path));
@@ -37,8 +37,8 @@ sf::Texture QSFMLCanvas::loadTextureFromQtRes(const QString &path)
     pixmap.save(&buffer, "PNG");
 
     // Текстуру загружаем с помощью содержимого буфера
-    sf::Texture texture;
-    texture.loadFromMemory(buffer.data().data(), buffer.data().size());
+    sf::Texture* texture = new sf::Texture();
+    texture->loadFromMemory(buffer.data().data(), buffer.data().size());
     return texture;
 }
 
